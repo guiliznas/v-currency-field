@@ -1,6 +1,6 @@
 {
   "name": "v-currency-field",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "Currency component for vuetify v-text-field",
   "author": "Philipe Augusto <phiny1@gmail.com>",
   "license": "MIT",
@@ -41,7 +41,6 @@
     "nuxt-treeshaking"
   ],
   "devDependencies": {
-    "@phiny1/vue-cli-plugin-p11n": "^0.4.1",
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
