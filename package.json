@@ -40,7 +40,6 @@
     "nuxt",
     "nuxt-treeshaking"
   ],
-  "dependencies": {},
   "devDependencies": {
     "@phiny1/vue-cli-plugin-p11n": "^0.4.1",
     "@vue/cli-plugin-babel": "^4.0.0",
@@ -90,6 +89,6 @@
   "peerDependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.10",
-    "vuetify": "^2.2.28"
+    "vuetify": "^2.0.11"
   }
 }

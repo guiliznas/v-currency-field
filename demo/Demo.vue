@@ -130,7 +130,7 @@
     name: 'demo',
     data() {
       return {
-        value: 0,
+        value: 9.9,
         submited: false,
         snack: false,
         snackColor: '',

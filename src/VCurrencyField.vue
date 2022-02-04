@@ -70,6 +70,9 @@ export default {
   },
   mounted() {
     this.addListeners(this.$el.querySelector('input'));
+    if (this.value) {
+      this.setValue(this.value);
+    }
   },
   computed: {
     attrs() {
