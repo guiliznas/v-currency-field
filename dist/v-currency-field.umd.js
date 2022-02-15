@@ -886,7 +886,14 @@
       this.addListeners(this.$el.querySelector('input'));
 
       if (this.value) {
-        this.setValue(this.value);
+        if (typeof this.value === 'string' && this.locale === 'pt-BR') {
+          var val = Number(this.value.replace(/[^0-9,.-]/g, '').split('.').join('').replace(',', '.')); // const val = this.value
+
+          this.$emit('input', val);
+          this.setValue(val);
+        } else {
+          this.setValue(this.value);
+        }
       }
     },
     computed: {
