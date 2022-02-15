@@ -1,5 +1,5 @@
 /*!
- * v-currency-field v3.2.0 
+ * v-currency-field v3.2.1 
  * (c) 2022 Philipe Augusto <phiny1@gmail.com>
  * Released under the MIT License.
  */
@@ -887,10 +887,8 @@
 
       if (this.value) {
         if (typeof this.value === 'string' && this.locale === 'pt-BR') {
-          var val = Number(this.value.replace(/[^0-9,.-]/g, '').split('.').join('').replace(',', '.')); // const val = this.value
-
+          var val = this.getNumber(this.value);
           this.$emit('input', val);
-          this.setValue(val);
         } else {
           this.setValue(this.value);
         }
@@ -935,6 +933,9 @@
       value: 'setValue'
     },
     methods: {
+      getNumber: function getNumber(v) {
+        return typeof v === 'string' ? Number(v.replace(/[^0-9,.-]/g, '').split('.').join('').replace(',', '.')) : v;
+      },
       addListeners: function addListeners(el) {
         var _this = this;
 
@@ -958,6 +959,14 @@
         });
       },
       setValue: function setValue$1(value) {
+        if (typeof value === 'string') {
+          value = this.getNumber(value);
+        }
+
+        if (this.value !== value) {
+          this.$emit('input', value);
+        }
+
         var input = this.$el.querySelector('input');
 
         setValue(input, value);
@@ -1115,7 +1124,7 @@
       undefined
     );
 
-  var version = '3.2.0';
+  var version = '3.2.1';
 
   function install(Vue, globalOptions) {
     if (globalOptions) {

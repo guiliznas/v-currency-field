@@ -72,16 +72,8 @@ export default {
     this.addListeners(this.$el.querySelector('input'));
     if (this.value) {
       if (typeof this.value === 'string' && (this.locale === 'pt-BR')) {
-        const val = Number(
-            this.value
-                .replace(/[^0-9,.-]/g, '')
-                .split('.')
-                .join('')
-                .replace(',', '.')
-        )
-        // const val = this.value
+        const val = this.getNumber(this.value)
         this.$emit('input', val)
-        this.setValue(val);
       } else {
         this.setValue(this.value);
       }
@@ -119,6 +111,15 @@ export default {
     value: 'setValue'
   },
   methods: {
+    getNumber(v) {
+      return typeof v === 'string' ? Number(
+          v
+              .replace(/[^0-9,.-]/g, '')
+              .split('.')
+              .join('')
+              .replace(',', '.')
+      ) : v
+    },
     addListeners(el) {
       el.addEventListener('change', e => {
         if (e.detail) {
@@ -137,6 +138,12 @@ export default {
       }, { capture: true })
     },
     setValue (value) {
+      if (typeof value === 'string') {
+        value = this.getNumber(value)
+      }
+      if (this.value !== value) {
+        this.$emit('input', value)
+      }
       let input = this.$el.querySelector('input')
       setValue(input, value)
     },

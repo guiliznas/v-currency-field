@@ -30,7 +30,7 @@
               </v-row>
 
               <v-row dense>
-                {{ value }}
+                {{ value }} - {{ typeof value }}
               </v-row>
 
               <v-row dense>
@@ -55,8 +55,23 @@
                 <v-btn 
                 small
                 class="mr-4 white--text"
-                @click.prevent="changeValue()"
+                @click="changeValue()"
                 color="purple darken-3">Change Value</v-btn> 
+              </v-row>
+
+              <v-row>
+                <v-btn @click="changeValue('100')">
+                  '100'
+                </v-btn>
+                <v-btn @click="changeValue('100,15')">
+                  '100,15'
+                </v-btn>
+                <v-btn @click="changeValue(100)">
+                  100
+                </v-btn>
+                <v-btn @click="changeValue(100.5)">
+                  100.5
+                </v-btn>
               </v-row>
             </v-form>
 
@@ -105,6 +120,7 @@
                       single-line
                       counter
                       autofocus
+                      locale="pt-BR"
                     ></v-currency-field>
                   </template>
                 </v-edit-dialog>
@@ -235,8 +251,8 @@
       }
     },
     methods: {
-      changeValue () {
-       this.value = 117;
+      changeValue (val) {
+       this.value = val || "123,4";
      },
      submit () {
       this.submited = true 
